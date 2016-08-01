@@ -1,3 +1,5 @@
+import random
+
 questions = {
     "strong": "Do ye like yer drinks with a strong kick?",
     "salty": "Do they go down the hatch salty like the sea?",
@@ -18,7 +20,7 @@ drinkS = {}
 print ("I be yer pirate bartender. I make pirates far and wide many a good drink. How do you like yer drink scallywag?")
 
 stro = input(questions["strong"] + (" yes or no?"))
-if stro == "y" or stro == "Y":
+if stro == "yes" or stro == "y":
     drinkS["strong"] = True
 else:
     drinkS["strong"] = False
@@ -38,8 +40,22 @@ if swee == "yes" or swee == "y":
 else:
     drinkS["sweet"] = False
 frui = input(questions["fruity"] + (" Yes or no?"))
-if frui == "y" or frui == "Y":
+if frui == "yes" or frui == "y":
     drinkS["fruity"] = True
 else:
     drinkS["fruity"] = False
 print(drinkS)
+
+
+cocktail = {}
+if drinkS["strong"] == True:
+    cocktail["strong"] = random.choice(ingredients["strong"])
+if drinkS["salty"] == True:
+    cocktail["salty"] = random.choice(ingredients["salty"])
+if drinkS["bitter"] == True:
+    cocktail["bitter"] = random.choice(ingredients["bitter"])
+if drinkS["sweet"] == True:
+    cocktail["sweet"] = random.choice(ingredients["sweet"])
+if drinkS["fruity"] == True:
+    cocktail["fruity"] = random.choice(ingredients["fruity"])
+print(cocktail)
