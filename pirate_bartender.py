@@ -13,29 +13,33 @@ ingredients = {
     "sweet": ["sugar cube", "spoonful of honey", "splash of cola"],
     "fruity": ["slice of orange", "dash of cassis", "cherry on top"],
 }
-print("I be yer pirate bartender. I make pirates far and wide many a good drink. How do you like yer drink scallywag?")
-input(questions["strong"] + (" yes or no?"))
-if input == "yes":
-    questions["strong"] = True
-elif input == "no":
-    questions["strong"] = False
-input(questions["salty"] + (" yes or no?"))
-if input == "yes":
-    questions["salty"] = True
-elif input == "no":
-    questions["salty"] = False
-input(questions["bitter"] + (" yes or no?"))
-if input == "yes":
-    questions["bitter"] = True
-elif input == "no":
-    questions["bitter"] = False
-input(questions["sweet"] + (" yes or no?"))
-if input == "yes":
-    questions["sweet"] = True
-elif input == "no":
-    questions["sweet"] = False
-input(questions["fruity"] + (" Yes or no?"))
-if input == "yes":
-    questions["fruity"] = True
-elif input == "no":
-    questions["fruity"] = False
+
+drinkS = {}
+print ("I be yer pirate bartender. I make pirates far and wide many a good drink. How do you like yer drink scallywag?")
+
+stro = input(questions["strong"] + (" yes or no?"))
+if stro == "y" or stro == "Y":
+    drinkS["strong"] = True
+else:
+    drinkS["strong"] = False
+salt = input(questions["salty"] + (" yes or no?"))
+if salt == "yes" or salt == "y":
+    drinkS["salty"] = True
+else:
+    drinkS["salty"] = False
+bitt = input(questions["bitter"] + (" yes or no?"))
+if bitt == "yes" or bitt == "y":
+    drinkS["bitter"] = True
+else:
+    drinkS["bitter"] = False
+swee = input(questions["sweet"] + (" yes or no?"))
+if swee == "yes" or swee == "y":
+    drinkS["sweet"] = True
+else:
+    drinkS["sweet"] = False
+frui = input(questions["fruity"] + (" Yes or no?"))
+if frui == "y" or frui == "Y":
+    drinkS["fruity"] = True
+else:
+    drinkS["fruity"] = False
+print(drinkS)
