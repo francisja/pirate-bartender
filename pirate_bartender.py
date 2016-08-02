@@ -16,46 +16,19 @@ ingredients = {
     "fruity": ["slice of orange", "dash of cassis", "cherry on top"],
 }
 
-drinkS = {}
-print ("I be yer pirate bartender. I make pirates far and wide many a good drink. How do you like yer drink scallywag?")
+styles = ["strong", "salty", "bitter", "sweet", "fruity"]
+def drink_likes():
+    drinkS = {}
+    print ("I be yer pirate bartender. I make pirates far and wide many a good drink. How do you like yer drink scallywag?")
 
-stro = input(questions["strong"] + (" yes or no?"))
-if stro == "yes" or stro == "y":
-    drinkS["strong"] = True
-else:
-    drinkS["strong"] = False
-salt = input(questions["salty"] + (" yes or no?"))
-if salt == "yes" or salt == "y":
-    drinkS["salty"] = True
-else:
-    drinkS["salty"] = False
-bitt = input(questions["bitter"] + (" yes or no?"))
-if bitt == "yes" or bitt == "y":
-    drinkS["bitter"] = True
-else:
-    drinkS["bitter"] = False
-swee = input(questions["sweet"] + (" yes or no?"))
-if swee == "yes" or swee == "y":
-    drinkS["sweet"] = True
-else:
-    drinkS["sweet"] = False
-frui = input(questions["fruity"] + (" Yes or no?"))
-if frui == "yes" or frui == "y":
-    drinkS["fruity"] = True
-else:
-    drinkS["fruity"] = False
-print(drinkS)
+    for style in styles:
+        answer = input(questions[style] + (" yes or no? "))
+        drinkS[style] = answer == "yes" or answer =="y"
+    return drinkS
 
-
-cocktail = {}
-if drinkS["strong"] == True:
-    cocktail["strong"] = random.choice(ingredients["strong"])
-if drinkS["salty"] == True:
-    cocktail["salty"] = random.choice(ingredients["salty"])
-if drinkS["bitter"] == True:
-    cocktail["bitter"] = random.choice(ingredients["bitter"])
-if drinkS["sweet"] == True:
-    cocktail["sweet"] = random.choice(ingredients["sweet"])
-if drinkS["fruity"] == True:
-    cocktail["fruity"] = random.choice(ingredients["fruity"])
-print(cocktail)
+def make_cocktail(drinkS):
+    cocktail = {}
+    for style in styles:
+        if drinkS[style] == True:
+            cocktail[style] = random.choice(ingredients[style])
+    return cocktail
