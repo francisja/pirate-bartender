@@ -32,3 +32,7 @@ def make_cocktail(drinkS):
         if drinkS[style] == True:
             cocktail[style] = random.choice(ingredients[style])
     return cocktail
+    
+if __name__ == "__main__":
+    request = drink_likes()
+    print(make_cocktail(request))
