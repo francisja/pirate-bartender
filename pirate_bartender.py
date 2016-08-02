@@ -9,11 +9,11 @@ questions = {
 }
 
 ingredients = {
-    "strong": ["glug of rum", "slug of whisky", "splash of gin"],
-    "salty": ["olive on a stick", "salt-dusted rim", "rasher of bacon"],
-    "bitter": ["shake of bitters", "splash of tonic", "twist of lemon peel"],
-    "sweet": ["sugar cube", "spoonful of honey", "splash of cola"],
-    "fruity": ["slice of orange", "dash of cassis", "cherry on top"],
+    "strong": {"glug of rum": 10, "slug of whisky": 10, "splash of gin": 10},
+    "salty": {"olive on a stick": 10, "salt-dusted rim": 10, "rasher of bacon": 10},
+    "bitter": {"shake of bitters": 10, "splash of tonic": 10, "twist of lemon peel": 10},
+    "sweet": {"sugar cube": 10, "spoonful of honey": 10, "splash of cola": 10},
+    "fruity": {"slice of orange": 10, "dash of cassis": 10, "cherry on top": 10},
 }
 
 styles = ["strong", "salty", "bitter", "sweet", "fruity"]
@@ -30,7 +30,8 @@ def make_cocktail(drinkS):
     cocktail = {}
     for style in styles:
         if drinkS[style] == True:
-            cocktail[style] = random.choice(ingredients[style])
+            ingredient = random.choice(list(ingredients[style].keys()))
+            cocktail[style] = ingredient
     return cocktail
     
 if __name__ == "__main__":
