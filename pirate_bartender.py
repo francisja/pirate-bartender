@@ -36,4 +36,7 @@ def make_cocktail(drinkS):
     
 if __name__ == "__main__":
     request = drink_likes()
-    print(make_cocktail(request))
+    mix = make_cocktail(request)
+    print("Here come yar drink ye wench.. Yar will like it!")
+    for alcohol in mix:
+        print("A " + mix['{}'.format(alcohol)])
