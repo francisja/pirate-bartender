@@ -17,51 +17,50 @@ ingredients = {
 }
 
 styles = ["strong", "salty", "bitter", "sweet", "fruity"]
-name = input("Arr me matey! What do ye go by? ")
-print("I be yer pirate bartender, " + (name) + ". I make pirates, far and wide, many a good drink. How do you like yer drink scallywag?")
+name = input("Arr me matey! What do ye go by?")
 
-while True:
-    try:
-        def drink_likes():
-            drinkSelection = {}
-            for style in styles:
-                answer = input(questions[style] + (" yes or no? "))
-                drinkSelection[style] = answer == "yes" or answer =="y"
-            return drinkSelection
 
-        def make_cocktail(drinkSelection):
-            cocktail = {}
-            for style in styles:
-                if drinkSelection[style] == True:
-                    ingredient = (random.choice(list(ingredients[style].keys())))
-                    cocktail[style] = ingredient
-                    ingredients[style][ingredient] -= 1
-        #            print (ingredients[style][ingredient]) #check
-            return cocktail
+def drink_likes(): #a function to find out the style of drink the user wants
+    drinkSelection = {}
+    print ("I be yer pirate bartender. I make pirates, far and wide, many a good drink. How do you like yer drink scallywag?")
+    for style in styles:
+        answer = input(questions[style] + (" yes or no? ")) #for each item in the styles a question is asked to see if the user enjoys that preference
+        drinkSelection[style] = answer == "yes" or answer =="y"
+    return drinkSelection #adds the preferences to the drinkSelection list
 
-        if __name__ == "__main__":
-            request = drink_likes()
-            mix = make_cocktail(request)
-            drinkName = {}
-            drinkName[name] = mix
-        #    print(drinkName) #check
-            print("HERE COME YER DRINK YE WENCH!")
-            for title in drinkName.keys():
-                print("Yer will like what I put in ye drink. I call it the " + title + ". " + "It has...")
-            for alcohol in mix:
-                print("A " + mix['{}'.format(alcohol)])
+def make_cocktail(drinkSelection): #a function to create a drink from the user's drink preferences
+    cocktail = {}
+    for style in styles:
+        if drinkSelection[style]:
+            ingredient = (random.choice(list(ingredients[style].keys()))) #from the user's preference, a random ingredient is selected to be added to the cocktail
+            cocktail[style] = ingredient
+            ingredients[style][ingredient] -= 1 #for every ingredient used, the stock goes down 1
+#            print (ingredients[style][ingredient]) #check
+    return cocktail #adds the drink mix to the cocktail list
 
-        another = input("Would ye like summor poison? yes or no? ")
-        if another == "yes" or another == "y":
-            for title in drinkName.keys():
-                same = input("Would you like another " + title + "? yes or no? ")
-            if same == "yes" or same == "y":
-                print("YER DRINK BE UP!!!")
-                print("Another " + title + ". " + "Just like the last one, it has...")
-                for alcohol in drinkName[title]:
-                    print("A " + drinkName[title]['{}'.format(alcohol)])
-                break
-        else:
-            break
-    except:
-        break
+if __name__ == "__main__":
+    request = drink_likes() #sets the variable request to the function of drink_likes
+    mix = make_cocktail(request) #sets the variable mix to the function of make_coctail
+    drinkName = [mix] #drinkName creates a dictionary of the drink style preference with the random ingredient selected
+#    print(drinkName) #check
+    print("Here come yer drink ye wench")
+    for alcohol in mix:
+        print("A " + mix['{}'.format(alcohol)])
+
+    want_drink = input("Would ye like summor poison? yes or no?")
+    while want_drink == "yes" or want_drink == "y":
+        for index, mix in enumerate(drinkName, start = 1): #creates a count in the index for each mix made
+            same = input("Would you like another " + name + "-" + str(index) + "? yes or no?")
+            if same == "yes" or same == "y": #creates the same drink as before
+                print("Yer drink be up.")
+                print("Another " + name + "-" + str(index) + ". " + "Just like the last one it has...")
+                for style, ingredient in mix.items():
+                    print("A " + ingredient + " has been added to yer drink") # with the tuple pair of style and ingredient in mix, ingredient is printed out
+            else: #creates a new drink for the user that's different from the last one made
+                request = drink_likes()
+                mix = make_cocktail(request)
+                drinkName.append(mix) #adds the new drink to the mix list
+                for style, ingredient in mix.items():
+                    print("A " + ingredient + " has been added to yer drink")
+                break #stops the "for style, ingredient in mix.items()" loop
+        want_drink = input("Would ye like summor poison? yes or no?") #starts the while loop again
